@@ -16,7 +16,7 @@ In the CLI tool execute
     "cf create-service hanatrial shared-hdi  i076165-hdb"
 
 
-3) Create XSUAA instance
+3)Create XSUAA instance
     "cf create-service xsuaa application  i076165-xsuaa"
 
 
