@@ -1,0 +1,50 @@
+{
+	"welcomeFile": "index.html",
+	"routes": [
+		{
+			"source": "/javabackend(.*)$",
+			"target": "$1",
+			"destination": "javabackendDestination",
+			"authenticationType": "xsuaa",
+			"httpMethods": [
+				"GET"
+			],
+			"scope": "$XSAPPNAME.Display"
+		},
+		{
+			"source": "/javabackend(.*)$",
+			"target": "$1",
+			"destination": "javabackendDestination",
+			"authenticationType": "xsuaa",
+			"httpMethods": [
+				"POST",
+				"PUT"
+			],
+			"scope": "$XSAPPNAME.Create"
+		},
+		{
+			"source": "/javabackend(.*)$",
+			"target": "$1",
+			"destination": "javabackendDestination",
+			"authenticationType": "xsuaa",
+			"httpMethods": [
+				"DELETE"
+			],
+			"scope": "$XSAPPNAME.Delete"
+		},
+		
+		
+		{
+			"source": "^/sap/ui5/1(.*)$",
+			"target": "$1",
+			"destination": "ui5Destination",
+			"csrfProtection": false
+		},
+		{
+			"source": "^/(.*)",
+			"localDir": "resources",
+			"authenticationType": "xsuaa",
+			"scope": "$XSAPPNAME.Display"
+		}
+	]
+} 

@@ -1,0 +1,37 @@
+{
+	"xsappname": "i076165-ui",
+	"tenant-mode": "dedicated",
+	"scopes": [
+		{
+			"name": "$XSAPPNAME.Display",
+			"description": "display"
+		},
+		{
+			"name": "$XSAPPNAME.Create",
+			"description": "create"
+		},
+		{
+			"name": "$XSAPPNAME.Delete",
+			"description": "delete"
+		}
+	],
+	"role-templates": [
+		{
+			"name": "Viewer",
+			"description": "View all entries",
+			"scope-references": [
+				"$XSAPPNAME.Display",
+				"uaa.user"
+			]
+		},
+		{
+			"name": "Admin",
+			"description": "All Activities",
+			"scope-references": [
+				"$XSAPPNAME.Display",
+				"$XSAPPNAME.Create",
+				"$XSAPPNAME.Delete"
+			]
+		}
+	]
+}

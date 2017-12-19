@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Address Books</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<script src="/sap/ui5/1/resources/sap-ui-core.js" id="sap-ui-bootstrap"
+	data-sap-ui-libs="sap.m" data-sap-ui-theme="sap_bluecrystal"
+	data-sap-ui-resourceroots='{
+				"poc.cf": "./"
+			}'>
+	
+</script>
+
+<script>
+	sap.ui.getCore().attachInit(function() {
+
+		var oCompContainer = new sap.ui.core.ComponentContainer({
+			height: "100%"
+		})
+
+		new sap.m.Shell({
+			app: oCompContainer,
+			showLogout: false
+		}).placeAt("content");
+
+		var oComponent = sap.ui.component({
+			name: "poc.cf",
+			manifestFirst: true,
+			async: true
+		}).then(function(oComponent) {
+			oCompContainer.setComponent(oComponent);
+		});
+
+	});
+</script>
+
+</head>
+<body class="sapUiBody" role="application">
+	<div id="content"></div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+	"xsappname": "i076165-ui",
+	"tenant-mode": "dedicated",
+	"attributes":[
+	{"name":"email",
+	"value":"santhosh.kumar.chanemougassoundiram@sap.com",
+	"email":"sandysundara@gmail.com"
+	
+	}
+	],
+	"scopes": [
+		{
+			"name": "i076165-ui.Display",
+			"description": "display"
+		},
+		{
+			"name": "i076165-ui.Create",
+			"description": "create"
+		},
+		{
+			"name": "i076165-ui.Delete",
+			"description": "delete"
+		}
+	],
+	"role-templates": [
+		{
+			"name": "Viewer",
+			"description": "View all entries",
+			"scope-references": [
+				"i076165-ui.Display",
+				"uaa.user"
+			]
+		},
+		{
+			"name": "Admin",
+			"description": "All Activities",
+			"scope-references": [
+				"i076165-ui.Display",
+				"i076165-ui.Create",
+				"i076165-ui.Delete"
+			]
+		}
+	]
+}

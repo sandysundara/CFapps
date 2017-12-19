@@ -1,0 +1,46 @@
+---
+applications:
+- name: i076165-hana-db
+  path: hana_db
+  memory: 50M
+  no-route: true
+  services:
+    - i076165-hdb
+    
+- name: i076165-odata-java
+  host: i076165trial-i076165-javabackend-endpoint
+  buildpack: sap_java_buildpack
+  path: odata_java/target/odata_java.war
+  memory: 256M
+  env:
+    TARGET_RUNTIME: tomee
+    TENANT_HOST_PATTERN : ^(.*)-i076165-javabackend-endpoint.cfapps.sap.hana.ondemand.com
+    JBP_CONFIG_RESOURCE_CONFIGURATION: "['tomee/webapps/ROOT/WEB-INF/resources.xml': {'service_name_for_DefaultDB' : 'i076165-hdb'}]"
+  services:
+    - i076165-hdb
+    - i076165-xsuaa
+    
+- name: i076165-xs
+  host: i076165trial-i076165-xs-endpoint
+  path: xs
+  memory: 125M
+  env:
+    TENANT_HOST_PATTERN : ^(.*)-i076165-xs-endpoint.cfapps.sap.hana.ondemand.com
+  services:
+    - i076165-hana-db
+      
+- name: i076165-ui
+  host: i076165trial-i076165-ui-endpoint
+  path: web
+  memory: 150M
+  env:
+    TENANT_HOST_PATTERN : ^(.*)-i076165-ui-endpoint.cfapps.sap.hana.ondemand.com
+    SAP_JWT_TRUST_ACL :  [ { clientid : "*", identityzone : "*" } ]
+    destinations: >
+      [
+       {"name":"javabackendDestination", "url":"https://i076165trial-i076165-javabackend-endpoint.cfapps.eu10.hana.ondemand.com", "forwardAuthToken": true},
+      {"name":"ui5Destination", "url":"https://sapui5.hana.ondemand.com", "forwardAuthToken": true}
+      ]    
+  services:
+    - xsuaa-i076165
+    

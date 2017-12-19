@@ -1,0 +1,36 @@
+<core:View xmlns:core="sap.ui.core" xmlns="sap.m"
+	controllerName="poc.cf.CRUD" xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	height="100%">
+	<IconTabBar>
+		<items>
+			<IconTabFilter id="xsodata" design="Horizontal"
+				text="xsodata">
+				<!-- use this to make the table occupy the available screen height -->
+				<VBox fitContainer="true">
+					<smartFilterBar:SmartFilterBar id="smartFilterBar"
+						entitySet="Addresses" enableBasicSearch="true">
+						<!-- layout data used to make the table growing but the filter bar 
+							fixed -->
+						<smartFilterBar:layoutData>
+							<FlexItemData shrinkFactor="0" />
+						</smartFilterBar:layoutData>
+					</smartFilterBar:SmartFilterBar>
+					<smartTable:SmartTable entitySet="Addresses"
+						initiallyVisibleFields="id,first_name,last_name,address,city,country,zip,phone,email,web"
+						smartFilterId="smartFilterBar" tableType="Table" useExportToExcel="true"
+						useVariantManagement="false" useTablePersonalisation="true"
+						header="Address" showRowCount="true" enableAutoBinding="true"
+						class="sapUiResponsiveContentPadding">
+						<!-- layout data used to make the table growing but the filter bar 
+							fixed -->
+						<smartTable:layoutData>
+							<FlexItemData growFactor="1" baseSize="0%" />
+						</smartTable:layoutData>
+					</smartTable:SmartTable>
+				</VBox>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</core:View>

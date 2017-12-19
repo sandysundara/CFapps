@@ -1,0 +1,67 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "poc.cf",
+		"type": "application",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{FULLSCREEN_TITLE}}",
+		"dataSources": {
+			"address_java": {
+				"uri": "/javabackend/Address.svc"
+			}
+		},
+		"resources": "resources.json"
+	},
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"resources": {
+		},
+		"rootView": {
+			"viewName": "poc.cf.CRUD",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "${sap.ui5.dist.version}",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.layout": {},
+				"sap.ui.comp": {}
+			}
+		},
+		"contentDensities": {
+			"compact": false,
+			"cozy": true
+		},
+		"models": {
+			"address_java": {
+				"dataSource": "address_java",
+				"settings": {
+					"useBatch": false,
+					"defaultCountMode" : "Inline",
+					"synchronizationMode" : "None"
+				}
+			}
+		},		
+		"config": {
+			"titleResource": "FULLSCREEN_TITLE",
+			"sapFiori2Adaptation": true,
+			"fullWidth": true
+		}		
+	}
+}

@@ -1,0 +1,18 @@
+namespace poc.cf;
+
+context AddressBook {
+    
+  Entity Address {
+    key id     : Integer;
+    first_name : String(256);
+    last_name  : String(256);
+    address    : String(256);
+    city       : String(256);
+    country    : String(256);
+    zip        : String(10);
+    phone      : String(25);
+    email      : String(50);
+    web        : String(50);
+  };
+    
+};

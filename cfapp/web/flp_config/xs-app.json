@@ -1,0 +1,14 @@
+{
+	"routes": [{
+		"localDir": "themes",
+		"source": "/themes/(.*)",
+		"cacheControl": "public, max-age=31536000,must-revalidate",
+		"target": "$1"
+	},
+	{
+		"source": "^/i076222app/(.*)$",
+		"target": "$1",
+		"authenticationType": "xsuaa",
+		"destination": "i076222appDestination"
+	}]
+}

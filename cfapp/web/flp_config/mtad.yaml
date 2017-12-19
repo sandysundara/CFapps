@@ -1,0 +1,61 @@
+_schema-version: '2.0'
+ID: portal-site-fb58eeb0-677a-11e7-9261-3b546c5e7a06
+version: 1.2.0
+modules:
+  - name: site-entry-fb58eeb0-677a-11e7-9261-3b546c5e7a06
+    type: javascript.nodejs
+    path: site-entry/
+    parameters:
+      memory: 128M
+    requires:
+      - name: site-host-fb58eeb0-677a-11e7-9261-3b546c5e7a06
+      - name: portal-uaa
+      - name: sapui5-provider
+        properties:
+          sapui5url: '~{url}'
+      - name: env-provider
+        properties:
+          TENANT_HOST_PATTERN: '~{pattern}'
+      - name: app-destinations
+        group: destinations
+        properties:
+          name: i076222appDestination
+          url: ~{url}
+          forwardAuthToken: true
+  - name: site-content-fb58eeb0-677a-11e7-9261-3b546c5e7a06
+    type: com.sap.portal.site-content
+    path: site-content/
+    parameters:
+      health-check-type: none
+      memory: 128M
+    requires:
+      - name: site-client-fb58eeb0-677a-11e7-9261-3b546c5e7a06
+      - name: portal-uaa
+resources:
+  - name: site-host-fb58eeb0-677a-11e7-9261-3b546c5e7a06
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: portal-services
+      service-plan: site-host
+      config:
+        siteId: fb58eeb0-677a-11e7-9261-3b546c5e7a06
+  - name: portal-uaa
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: i076222-xsuaa
+  - name: sapui5-provider
+    properties:
+      url: 'https://sapui5.hana.ondemand.com'
+  - name: env-provider
+    properties:
+      pattern: '^(.*)-trial-development-site-entry-fb58eeb0-677a39e168be.cfapps.sap.hana.ondemand.com'
+  - name: site-client-fb58eeb0-677a-11e7-9261-3b546c5e7a06
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: portal-services
+      service-plan: site-content
+      config:
+        siteId: fb58eeb0-677a-11e7-9261-3b546c5e7a06
+  - name: app-destinations
+    properties:
+      url: https://i076222trial-i076222-ui-endpoint.cfapps.sap.hana.ondemand.com  
